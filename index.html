@@ -8,37 +8,44 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#001F3F" />
-  <title>Add to Home Screen - Leslie's Digital Card</title>
+  <title>Leslie's Digital Business Card</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <img src="les-digital-bc.jpg" alt="Leslie's Business Card" class="card-img">
+    <!-- Business Card Image -->
+    <img src="les-digital-bc.jpg" alt="Leslie Card" class="card-img" />
     <h1 class="name">Leslie Realtor</h1>
-    <p class="tagline">📱 For quick access, add this card to your iPhone's Home Screen.</p>
+    <p class="tagline">📱 Add this business card to your Home Screen!</p>
 
-    <div id="iosPrompt" class="ios-instructions" style="display: none">
-      <h2>How to Add This Card to Your iPhone</h2>
-      <ol class="instruction-list">
-        <li>
-          <p><strong>1. Tap the Share icon</strong> in Safari (at the bottom center):</p>
-          <img src="images/step1-share-icon.jpg" alt="Share icon screenshot" class="step-img">
-        </li>
-        <li>
-          <p><strong>2. Scroll down and tap "Add to Home Screen"</strong> from the menu:</p>
-          <img src="images/step2-add-home.jpg" alt="Add to home screen option" class="step-img">
-        </li>
-        <li>
-          <p><strong>3. Tap "Add" in the top-right corner</strong> of the next screen:</p>
-          <img src="images/step3-confirm.jpg" alt="Confirmation screen" class="step-img">
-        </li>
+    <!-- Android Install Button -->
+    <a id="androidInstallBtn" href="#" onclick="triggerAndroidInstall()" class="btn btn-home" style="display: none;">
+      📲 Add to Home Screen (Android)
+    </a>
+
+    <!-- iOS Install Button -->
+    <a id="iosInstallBtn" href="#" onclick="showIosInstructions()" class="btn btn-home" style="display: none;">
+      📲 Add to Home Screen (iPhone)
+    </a>
+
+    <!-- iOS Popup Instructions -->
+    <div id="iosPrompt" class="ios-instructions" style="display: none;">
+      <h2>📱 iPhone Instructions</h2>
+      <ol>
+        <li>Tap the <strong>Share</strong> button in Safari<br /><img src="icons/share-icon.png" alt="Share icon" width="80" /></li>
+        <li>Scroll and tap <strong>"Add to Home Screen"</strong><br /><img src="icons/add-home.png" alt="Add to Home Screen" width="100" /></li>
+        <li>Tap <strong>Add</strong> in the top right corner</li>
       </ol>
-      <button onclick="document.getElementById('iosPrompt').style.display='none'" class="btn green">Got it</button>
+      <button onclick="document.getElementById('iosPrompt').style.display='none'" class="btn">Got it</button>
     </div>
 
-    <a href="https://ads4u.store/leslie-business-card/" target="_blank" class="btn btn-home">
-      🔗 Open Full Card
-    </a>
+    <!-- Contact Download -->
+    <section class="extras">
+      <h2>Save Contact</h2>
+      <a href="https://drive.google.com/uc?export=download&id=1jVOPLmglgutpEWvj8NkD1wxTrWvU5jmi" download class="btn">
+        📇 Download Contact Card
+      </a>
+    </section>
   </div>
 
   <script src="script.js"></script>
