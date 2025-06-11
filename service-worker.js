@@ -1,24 +1,26 @@
-self.addEventListener('install', event => {
+self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open('static-cache').then(cache => {
+    caches.open("v1").then((cache) => {
       return cache.addAll([
-        './index.html',
-        './style.css',
-        './script.js',
-        './les-digital-bc.jpg',
-        './manifest.json',
-        './icons/icon-192.png',
-        './icons/icon-512.png',
-        './icons/apple-icon-180.png'
+        "/",
+        "/index.html",
+        "/style.css",
+        "/manifest.json",
+        "/les-digital-bc.jpg",
+        "/icons/icon-192.png",
+        "/icons/icon-512.png",
+        "/images/step1.png",
+        "/images/step2.png",
+        "/images/step3.png"
       ]);
     })
   );
 });
 
-self.addEventListener('fetch', event => {
+self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+    caches.match(event.request).then((cachedResponse) => {
+      return cachedResponse || fetch(event.request);
     })
   );
 });

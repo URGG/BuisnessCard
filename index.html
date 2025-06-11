@@ -8,46 +8,74 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#001F3F" />
-  <title>Leslie's Digital Business Card</title>
+  <title>Add Leslie's Business Card to Home Screen</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <!-- Business Card Image -->
-    <img src="les-digital-bc.jpg" alt="Leslie Card" class="card-img" />
+    <img src="les-digital-bc.jpg" alt="Leslie Card" class="card-img">
     <h1 class="name">Leslie Realtor</h1>
-    <p class="tagline">📱 Add this business card to your Home Screen!</p>
+    <p class="tagline">📱 Add this card to your home screen for instant access.</p>
 
-    <!-- Android Install Button -->
-    <a id="androidInstallBtn" href="#" onclick="triggerAndroidInstall()" class="btn btn-home" style="display: none;">
-      📲 Add to Home Screen (Android)
-    </a>
+    <div id="promptContainer"></div>
 
-    <!-- iOS Install Button -->
-    <a id="iosInstallBtn" href="#" onclick="showIosInstructions()" class="btn btn-home" style="display: none;">
-      📲 Add to Home Screen (iPhone)
-    </a>
-
-    <!-- iOS Popup Instructions -->
-    <div id="iosPrompt" class="ios-instructions" style="display: none;">
-      <h2>📱 iPhone Instructions</h2>
-      <ol>
-        <li>Tap the <strong>Share</strong> button in Safari<br /><img src="icons/share-icon.png" alt="Share icon" width="80" /></li>
-        <li>Scroll and tap <strong>"Add to Home Screen"</strong><br /><img src="icons/add-home.png" alt="Add to Home Screen" width="100" /></li>
-        <li>Tap <strong>Add</strong> in the top right corner</li>
-      </ol>
-      <button onclick="document.getElementById('iosPrompt').style.display='none'" class="btn">Got it</button>
+    <div class="instructions">
+      <h2>How to Add This Card to Your Home Screen</h2>
+      <div class="step">
+        <img src="images/step1.jpeg" alt="Step 1" class="step-img">
+        <p><strong>Step 1:</strong> Tap the <strong>Share</strong> icon in your browser (usually at the bottom or top).</p>
+      </div>
+      <div class="step">
+        <img src="images/step2.jpeg" alt="Step 2" class="step-img">
+        <p><strong>Step 2:</strong> Scroll and find <strong>"Add to Home Screen"</strong>.</p>
+      </div>
+      <div class="step">
+        <img src="images/step3.jpeg" alt="Step 3" class="step-img">
+        <p><strong>Step 3:</strong> Tap <strong>Add</strong> to finish.</p>
+      </div>
     </div>
 
-    <!-- Contact Download -->
-    <section class="extras">
-      <h2>Save Contact</h2>
-      <a href="https://drive.google.com/uc?export=download&id=1jVOPLmglgutpEWvj8NkD1wxTrWvU5jmi" download class="btn">
-        📇 Download Contact Card
-      </a>
-    </section>
+    
+    <a href="https://ads4u.store/leslie-business-card/" class="btn btn-home">← Back to Main Site</a>
+
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+      const isAndroid = /android/.test(window.navigator.userAgent.toLowerCase());
+      const container = document.getElementById('promptContainer');
+
+      if (isIos) {
+        container.innerHTML = `
+          <div class="ios-banner">
+            <p><strong>Tip:</strong> Tap the <strong>Share</strong> icon and choose <strong>Add to Home Screen</strong>.</p>
+          </div>
+        `;
+      } else if (isAndroid) {
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+          e.preventDefault();
+          deferredPrompt = e;
+
+          const btn = document.createElement('button');
+          btn.textContent = '📲 Add to Home Screen';
+          btn.className = 'btn';
+          btn.onclick = () => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(() => deferredPrompt = null);
+          };
+          container.appendChild(btn);
+        });
+      }
+    });
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(() => console.log('Service Worker Registered'));
+    }
+  </script>
+  
 </body>
 </html>
