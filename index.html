@@ -3,60 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add to Home Screen</title>
   <link rel="manifest" href="manifest.json" />
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      padding: 50px 20px;
-      background: #f9f9f9;
-    }
-    h1 {
-      color: #001F3F;
-    }
-    button {
-      padding: 16px 32px;
-      font-size: 18px;
-      background: #001F3F;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="apple-touch-icon" href="icons/apple-icon-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#001F3F" />
+  <title>Leslie's Digital Business Card</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>📲 Add to Home Screen</h1>
-  <p>Tap the button below to install this digital card to your phone.</p>
-  <button id="installBtn" style="display: none;">Add to Home Screen</button>
+  <div class="container">
+    <img src="les-digital-bc.jpg" alt="Leslie Card" class="card-img">
+    <h1 class="name">Leslie Realtor</h1>
+    <p class="tagline">📱 Add me to your Home Screen for quick access!</p>
 
-  <script>
-    let deferredPrompt;
-    const installBtn = document.getElementById('installBtn');
+    <a href="#" onclick="showIosInstructions()" class="btn btn-home">
+      📲 Add to Home Screen
+    </a>
 
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installBtn.style.display = 'inline-block';
-    });
+    <div id="iosPrompt" class="ios-instructions" style="display: none">
+      <p>
+        📱 <strong>iPhone Users:</strong> Tap <strong>Share</strong> (the square with the arrow), then select <strong>"Add to Home Screen"</strong>.
+      </p>
+      <button onclick="document.getElementById('iosPrompt').style.display='none'" class="btn">Got it</button>
+    </div>
+  </div>
 
-    installBtn.addEventListener('click', async () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-          console.log('User accepted install prompt');
-        }
-        deferredPrompt = null;
-      }
-    });
-  </script>
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js');
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
