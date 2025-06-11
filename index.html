@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -14,20 +15,52 @@
   <div class="container">
     <img src="les-digital-bc.jpg" alt="Leslie Card" class="card-img">
     <h1 class="name">Leslie Realtor</h1>
-    <p class="tagline">📱 Add me to your Home Screen for quick access!</p>
-
-    <a href="#" onclick="showIosInstructions()" class="btn btn-home">
-      📲 Add to Home Screen
-    </a>
+    <p class="tagline">📱 Quick Access: Add this card to your Home Screen</p>
 
     <div id="iosPrompt" class="ios-instructions" style="display: none">
+      <h2>📲 Save This Card to Your iPhone</h2>
       <p>
-        📱 <strong>iPhone Users:</strong> Tap <strong>Share</strong> (the square with the arrow), then select <strong>"Add to Home Screen"</strong>.
+        For the best experience, add this card to your Home Screen:
       </p>
-      <button onclick="document.getElementById('iosPrompt').style.display='none'" class="btn">Got it</button>
+      <ol>
+        <li>Tap the <strong>Share</strong> icon at the bottom of Safari.</li>
+        <li>Scroll down and tap <strong>"Add to Home Screen"</strong>.</li>
+        <li>Tap <strong>Add</strong> in the top right.</li>
+      </ol>
+      <button onclick="document.getElementById('iosPrompt').style.display='none'" class="btn green">Got it</button>
     </div>
-  </div>
 
+    <section class="extras">
+      <h2>Save &amp; Share</h2>
+      <a href="https://drive.google.com/uc?export=download&id=1jVOPLmglgutpEWvj8NkD1wxTrWvU5jmi" download class="btn">
+        📇 Save Contact
+      </a>
+
+      <a href="https://urgg.github.io/BuisnessCard/" target="_blank" class="btn btn-home">
+        📲 View Full Card / Add to Home Screen
+      </a>
+
+      <div class="loan-info">
+        <h3>📌 Information Needed at Loan Application</h3>
+        <ul>
+          <li>Recent Pay Stubs (Last 2)</li>
+          <li>W-2 (Last 2 Years)</li>
+          <li>Income Tax Return (Last 2 Years)</li>
+          <li>Social Security Card (copy)</li>
+          <li>Driver’s License (copy)</li>
+          <li>Bank Statement (Last 2 Months)</li>
+        </ul>
+        <a href="https://www.wecanhelp.house/loan-process/loans/form/" target="_blank" class="btn green">
+          📝 Pre-Qualification Form
+        </a>
+      </div>
+
+      <div class="qr-section">
+        <p>Scan to open full card &amp; add to home screen:</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://ads4u.store/leslie-business-card/" alt="QR Code to Leslie Business Card" width="200" height="200" />
+      </div>
+    </section>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
